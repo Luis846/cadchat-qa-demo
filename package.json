@@ -1,0 +1,20 @@
+{
+  "name": "cadchat-qa-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/cypress": "^0.1.6",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^25.9.1",
+    "cypress": "^15.16.0",
+    "typescript": "^6.0.3"
+  }
+}

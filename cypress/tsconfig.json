@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "target": "es2016",
+        "lib": ["es2016", "dom"],
+        "types": ["cypress", "node", "mocha"],
+        "moduleResolution": "bundler"
+    },
+    "include": ["**/*.ts"]
+}

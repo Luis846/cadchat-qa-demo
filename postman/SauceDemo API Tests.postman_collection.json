@@ -1,0 +1,156 @@
+{
+  "info": {
+    "_postman_id": "0de1f496-c4f2-465c-8781-9418e8bd11ee",
+    "name": "SauceDemo API Tests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "5563897",
+    "_collection_link": "https://go.postman.co/collection/5563897-0de1f496-c4f2-465c-8781-9418e8bd11ee?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Check homepage",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Home Page loads successfully', () =>{\r",
+              "    pm.response.to.have.status(200)\r",
+              "})\r",
+              "\r",
+              "pm.test('Response time is acceptable', () => {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000)\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://www.saucedemo.com/",
+          "protocol": "https",
+          "host": [
+            "www",
+            "saucedemo",
+            "com"
+          ],
+          "path": [
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Check Login Page",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Login page loads successfully', () =>{\r",
+              "    pm.response.to.have.status(200)\r",
+              "})\r",
+              "\r",
+              "pm.test('Response is a React application', () => {\r",
+              "  pm.expect(pm.response.text()).to.include('root')\r",
+              "})\r",
+              "\r",
+              "pm.test('Response references main JavaScript bundle', () => {\r",
+              "  pm.expect(pm.response.text()).to.include('main.')\r",
+              "})\r",
+              "\r",
+              "pm.test('Response time is under 3 seconds', () => {\r",
+              "  pm.expect(pm.response.responseTime).to.be.below(3000)\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://www.saucedemo.com",
+          "protocol": "https",
+          "host": [
+            "www",
+            "saucedemo",
+            "com"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Check API Health",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('API responds successfully', () =>{\r",
+              "    pm.response.to.have.status(200)\r",
+              "})\r",
+              "\r",
+              "pm.test('Response is JSON', () => {\r",
+              "    pm.response.to.be.json\r",
+              "})\r",
+              "\r",
+              "pm.test('Response contains expected fields', () => {\r",
+              "    const response = pm.response.json()\r",
+              "    pm.expect(response).to.have.property('id')\r",
+              "    pm.expect(response).to.have.property('title')\r",
+              "    pm.expect(response).to.have.property('body')\r",
+              "})\r",
+              "\r",
+              "pm.test('Response time is under 2 seconds', () => {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000)\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/posts/1",
+          "protocol": "https",
+          "host": [
+            "jsonplaceholder",
+            "typicode",
+            "com"
+          ],
+          "path": [
+            "posts",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
