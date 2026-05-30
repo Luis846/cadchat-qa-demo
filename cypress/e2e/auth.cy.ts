@@ -2,7 +2,7 @@ describe('Authentication', () => {
 
     it('allows a user to sign in successfully', () => {
         cy.visit('/')
-        cy.get('#user-name').type('standard_user')
+        cy.get('#user-name').type('standard_userfg')
         cy.get('#password').type('secret_sauce')
         cy.get('#login-button').click()
         cy.url().should('include', '/inventory')
