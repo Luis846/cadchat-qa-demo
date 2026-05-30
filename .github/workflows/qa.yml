@@ -24,21 +24,16 @@ jobs:
               run: npm install
 
             - name: Run Cypress tests
-              run: npx cypress run --headless --browser chrome
+              uses: cypress-io/github-action@v6
 
-            - name: Upload screenshots on failure
-              uses: actions/upload-artifact@v4
-              if: failure()
-              with:
-                name: cypress-screenshots
-                path: cypress/screenshots
+           
 
     postman-tests:
         name: Postman API Tests
         runs-on: ubuntu-latest
         steps:
         - name: Checkout code
-          uses: actions/checkout@v3
+          uses: actions/checkout@v4
 
         - name: Install Newman
           run: npm install -g newman
