@@ -1,0 +1,49 @@
+name: QA Test Suite
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+
+jobs:
+
+    cypress-tests:
+        name: Cypress E2E Tests
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: Setup Node
+              uses: actions/setup-node@v3
+              with:
+                node-version: 18
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: Run Cypress tests
+              run: npx cypress run --headless --browser chrome
+
+            - name: Upload screenshots on failure
+              uses: actions/upload-artifact@v3
+              if: failure()
+              with:
+                name: cypress-screenshots
+                path: cypress/screenshots
+
+    postman-tests:
+        name: Postman API Tests
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout code
+          uses: actions/checkout@v3
+
+        - name: Install Newman
+          run: npm install -g newman
+
+        - name: Run Postman collection
+          run: newman run "postman/SauceDemo API Tests.postman_collection.json"
+
+            
