@@ -8,8 +8,8 @@ on:
 
 jobs:
 
-    cypress-tests:
-        name: Cypress E2E Tests
+    smoke-tests:
+        name: Smoke Tests
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
@@ -23,14 +23,50 @@ jobs:
             - name: Install dependencies
               run: npm install
 
-            - name: Run Cypress tests
+            - name: Run smoke tests
               uses: cypress-io/github-action@v6
+              with:
+                spec: 'cypress/e2e/smoke/**/*.cy.ts'
+              env:
+               CYPRESS_USERNAME: ${{ secrets.CYPRESS_USERNAME }}
+               CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
 
             - name: Upload Cypress screenshots on failure
               uses: actions/upload-artifact@v4
               if: failure()
               with:
-                name: cypress-screenshots
+                name: smoke-screenshots
+                path: cypress/screenshots
+
+    regression-tests:
+        name: Regression Tests
+        runs-on: ubuntu-latest
+        needs: smoke-tests
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Setup Node
+              uses: actions/setup-node@v4
+              with:
+                node-version: 18
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: Run regression tests
+              uses: cypress-io/github-action@v6
+              with:
+                spec: 'cypress/e2e/regression/**/*.cy.ts'
+              env:
+                CYPRESS_USERNAME: ${{ secrets.CYPRESS_USERNAME }}
+                CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }} 
+
+            - name: Upload regression screenshots on failure
+              uses: actions/upload-artifact@v4
+              if: failure()
+              with:
+                name: regression-screenshots 
                 path: cypress/screenshots
 
            
