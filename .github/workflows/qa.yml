@@ -52,7 +52,7 @@ jobs:
             - name: Run regression tests
               uses: cypress-io/github-action@v6
               with:
-                spec: 'cypress/e2e/regression/** 
+                spec: 'cypress/e2e/regression/**/*.cy.ts' 
 
             - name: Upload regression screenshots on failure
               uses: actions/upload-artifact@v4
