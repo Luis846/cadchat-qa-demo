@@ -145,7 +145,10 @@
               "})\r",
               "\r",
               "//save the new post ID for use in later requests\r",
-              "pm.colectionVariables.set('newPostId', pm.response.json().id)"
+              "const response = pm.response.json()\r",
+              "if (response && response.id){\r",
+              "    pm.collectionVariables.set('newPostId', response.id)\r",
+              "}"
             ],
             "type": "text/javascript",
             "packages": {},
@@ -209,7 +212,7 @@
               "    pm.expect(response.userId).to.equal(1)\r",
               "})\r",
               "\r",
-              "pm.tes('Response time is under 2 seconds', () =>{\r",
+              "pm.test('Response time is under 2 seconds', () =>{\r",
               "    pm.expect(pm.response.responseTime).to.be.below(2000)\r",
               "})"
             ],
