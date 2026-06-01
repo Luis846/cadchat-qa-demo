@@ -82,5 +82,5 @@ jobs:
           run: npm install -g newman
 
         - name: Run Postman collection
-          run: newman run "postman/qa-api-tests.postman_collection.json" --env-var "baseurl=https://jsonplaceholder.typicode.com"
+          run: newman run "postman/qa-api-tests.postman_collection.json" --global-var "baseurl=https://jsonplaceholder.typicode.com"
         
