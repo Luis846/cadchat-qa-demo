@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+import LoginPage from '../pages/LoginPage'
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite
@@ -13,11 +14,7 @@
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })
 Cypress.Commands.add('loginByUI', (username: string, password: string) => {
-    cy.visit('/')
-    cy.get('#user-name').type(username)
-    cy.get('#password').type(password)
-    cy.get('#login-button').click()
-    cy.url().should('include', '/inventory')
+    LoginPage.login(username, password)
 })
 //
 //
