@@ -4,7 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cypress run",
+    "test:dev": "cypress run --config-file cypress.config.dev.ts",
+    "test:staging": "cypress run --config-file cypress.config.staging.ts",
+    "test:production": "cypress run --config-file cypress.config.production.ts",
+    "test:smoke": "cypress run --spec 'cypress/e2e/smoke/**",
+    "test:regression": "cypress run --spec 'cypress/e2e/regression/**",
+    "test:compliance": "cypress run --spec 'cypress/e2e/compliance/**", 
+    "open": "cypress open"
   },
   "keywords": [],
   "author": "",
