@@ -102,8 +102,8 @@ jobs:
                 spec: 'cypress/e2e/smoke/**/'
                 config-file: cypress.config.production.ts
               env:
-               CYPRESS_USERNAME: ${{ secrets.CYPRESS_PROD_USERNAME }}
-               CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PROD_PASSWORD }}
+               CYPRESS_USERNAME: ${{ secrets.CYPRESS_USERNAME }}
+               CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
             - uses: actions/upload-artifact@v4
               if: failure()
               with:
