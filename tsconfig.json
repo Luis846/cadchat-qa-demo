@@ -5,5 +5,6 @@
         "types": ["cypress", "node", "mocha"],
         "moduleResolution": "bundler"
     },
-    "include": ["cypress/**/*.ts"]
+    "include": ["**/*.ts"],
+    "exclude": ["../node_modules"]
 }
